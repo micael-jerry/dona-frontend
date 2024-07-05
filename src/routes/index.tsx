@@ -6,12 +6,13 @@ import { ProtectedRoute } from './ProtectedRoute';
 import { DASHBOARD_ROUTE, HOME_ROUTE, PROFILE_ROUTE, SIGNIN_ROUTE, SIGNUP_ROUTE } from '../constants/routes';
 import { SignUp } from '../page/signup/SignUp';
 import { Profile } from '../page/profile/Profile';
+import Home from '../page/home/Home';
 
 export const Routes: React.FC = () => {
 	const routes: RouteObject[] = [
 		{
 			path: HOME_ROUTE,
-			element: <div>home</div>,
+			element: <Home />,
 		},
 		{
 			path: SIGNIN_ROUTE,
