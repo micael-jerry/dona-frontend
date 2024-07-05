@@ -2,19 +2,26 @@ import React from 'react';
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import { Avatar, Box, Button, Container, CssBaseline, Grid, Link, TextField, Typography } from '@mui/material';
 import { useNavigate } from 'react-router-dom';
-import { SIGNIN_ROUTE } from '../../constants/routes';
+import { SIGNIN_ROUTE, SIGNUP_ROUTE } from '../../constants/routes';
+import { AuthRegister } from '../../clients/api';
+import { AuthRegisterRequestBody } from '../../types/api.types';
 
 export const SignUp: React.FC = () => {
 	const navigate = useNavigate();
-	const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+	const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
 		event.preventDefault();
 		const data = new FormData(event.currentTarget);
-		console.log({
-			pseudo: data.get('pseudo'),
-			email: data.get('email'),
-			password: data.get('password'),
-		});
-		navigate(SIGNIN_ROUTE);
+		const reqBody: AuthRegisterRequestBody = {
+			pseudo: data.get('pseudo') as string,
+			email: data.get('email') as string,
+			password: data.get('password') as string,
+		};
+		await AuthRegister(reqBody)
+			.then(() => navigate(SIGNIN_ROUTE))
+			.catch((err) => {
+				console.log(err);
+				navigate(SIGNUP_ROUTE);
+			});
 	};
 
 	return (
@@ -59,7 +66,7 @@ export const SignUp: React.FC = () => {
 					</Button>
 					<Grid container justifyContent="flex-end">
 						<Grid item>
-							<Link href="#" variant="body2">
+							<Link href={SIGNIN_ROUTE} variant="body2">
 								Already have an account? Sign in
 							</Link>
 						</Grid>

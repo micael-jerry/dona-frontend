@@ -5,6 +5,7 @@ import { useAuth } from '../../hooks/useAuth';
 import { useNavigate } from 'react-router-dom';
 import { DASHBOARD_ROUTE, SIGNIN_ROUTE, SIGNUP_ROUTE } from '../../constants/routes';
 import { AuthLogin } from '../../clients/api';
+import { AuthLoginRequestBody } from '../../types/api.types';
 
 export const SignIn: React.FC = () => {
 	const { setTokenValue } = useAuth();
@@ -13,10 +14,11 @@ export const SignIn: React.FC = () => {
 	const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
 		event.preventDefault();
 		const data = new FormData(event.currentTarget);
-		await AuthLogin({
+		const reqBody: AuthLoginRequestBody = {
 			email: data.get('email')! as string,
 			password: data.get('password')! as string,
-		})
+		};
+		await AuthLogin(reqBody)
 			.then((res) => {
 				setTokenValue(res.data.token);
 				navigate(DASHBOARD_ROUTE, { replace: true });

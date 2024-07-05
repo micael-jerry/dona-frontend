@@ -7,7 +7,7 @@ export type AuthRegisterRequestBody = {
 	pseudo: string;
 	email: string;
 	password: string;
-	bio: string;
+	bio?: string;
 };
 
 export type HelloWorldResponse = {
