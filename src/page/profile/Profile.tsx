@@ -1,6 +1,6 @@
 import { Typography } from '@mui/material';
 import React from 'react';
-import { Layout } from '../../components/Layout/Layout';
+import { Layout } from '../../components/layout/Layout';
 import { LAYOUT_MENU } from '../../constants/layout.menu';
 
 export const Profile: React.FC = () => {
