@@ -1,6 +1,6 @@
 import React from 'react';
 import { SignIn } from '../page/signin/SignIn';
-import { Dashboard } from '../page/home/Dashboard';
+import { Dashboard } from '../page/Dashboard/Dashboard';
 import { createBrowserRouter, RouteObject, RouterProvider } from 'react-router-dom';
 import { ProtectedRoute } from './ProtectedRoute';
 import { DASHBOARD_ROUTE, HOME_ROUTE, SIGNIN_ROUTE, SIGNUP_ROUTE } from '../constants/routes';
