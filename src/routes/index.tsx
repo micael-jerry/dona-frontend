@@ -18,7 +18,7 @@ export const Routes: React.FC = () => {
 		},
 		{
 			path: SIGNUP_ROUTE,
-			element: <SignUp/>
+			element: <SignUp />,
 		},
 		{
 			path: DASHBOARD_ROUTE,

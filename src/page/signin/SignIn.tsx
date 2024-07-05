@@ -3,22 +3,28 @@ import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import { Avatar, Box, Button, Container, CssBaseline, Grid, Link, TextField, Typography } from '@mui/material';
 import { useAuth } from '../../hooks/useAuth';
 import { useNavigate } from 'react-router-dom';
-import { DASHBOARD_ROUTE } from '../../constants/routes';
+import { DASHBOARD_ROUTE, SIGNIN_ROUTE } from '../../constants/routes';
+import { AuthLogin } from '../../clients/api';
 
 export const SignIn: React.FC = () => {
 	const { setTokenValue } = useAuth();
 	const navigate = useNavigate();
 
-	const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+	const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
 		event.preventDefault();
 		const data = new FormData(event.currentTarget);
-		setTokenValue(
-			JSON.stringify({
-				email: data.get('email'),
-				password: data.get('password'),
-			}),
-		);
-		navigate(DASHBOARD_ROUTE, { replace: true });
+		await AuthLogin({
+			email: data.get('email')! as string,
+			password: data.get('password')! as string,
+		})
+			.then((res) => {
+				setTokenValue(JSON.stringify(res.data));
+				navigate(DASHBOARD_ROUTE, { replace: true });
+			})
+			.catch((err) => {
+				console.log(err);
+				navigate(SIGNIN_ROUTE, { replace: true });
+			});
 	};
 
 	return (
