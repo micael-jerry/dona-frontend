@@ -1,1 +1,1 @@
-export type TokenType = string | null | undefined
+export type TokenType = string | null | undefined;

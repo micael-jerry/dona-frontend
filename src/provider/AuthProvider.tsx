@@ -7,7 +7,10 @@ export interface AuthContextType {
 	setTokenValue: (newToken: string) => void;
 }
 
-export const AuthContext = createContext<AuthContextType | undefined>(undefined);
+export const AuthContext = createContext<AuthContextType>({
+	token: null,
+	setTokenValue: () => {},
+});
 
 export interface AuthProviderProps {
 	children: React.ReactNode;

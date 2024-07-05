@@ -1,14 +1,14 @@
-import React from "react";
-import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
-import { Avatar, Box, Button, Container, CssBaseline, Grid, Link, TextField, Typography } from "@mui/material";
+import React from 'react';
+import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
+import { Avatar, Box, Button, Container, CssBaseline, Grid, Link, TextField, Typography } from '@mui/material';
 
 export const SignUp: React.FC = () => {
 	const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
 		event.preventDefault();
 		const data = new FormData(event.currentTarget);
 		console.log({
-			email: data.get("email"),
-			password: data.get("password"),
+			email: data.get('email'),
+			password: data.get('password'),
 		});
 	};
 
@@ -18,12 +18,12 @@ export const SignUp: React.FC = () => {
 			<Box
 				sx={{
 					marginTop: 8,
-					display: "flex",
-					flexDirection: "column",
-					alignItems: "center",
+					display: 'flex',
+					flexDirection: 'column',
+					alignItems: 'center',
 				}}
 			>
-				<Avatar sx={{ m: 1, bgcolor: "secondary.main" }}>
+				<Avatar sx={{ m: 1, bgcolor: 'secondary.main' }}>
 					<LockOutlinedIcon />
 				</Avatar>
 				<Typography component="h1" variant="h5">

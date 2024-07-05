@@ -1,6 +1,6 @@
-import "./LeafletMap.css";
-import { MapContainer, Marker, Popup, TileLayer } from "react-leaflet";
-import { LatLng } from "leaflet";
+import './LeafletMap.css';
+import { MapContainer, Marker, Popup, TileLayer } from 'react-leaflet';
+import { LatLng } from 'leaflet';
 
 export interface LeafletMapProps {
 	position: LatLng;
