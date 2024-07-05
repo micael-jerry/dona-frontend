@@ -3,7 +3,7 @@ import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import { Avatar, Box, Button, Container, CssBaseline, Grid, Link, TextField, Typography } from '@mui/material';
 import { useAuth } from '../../hooks/useAuth';
 import { useNavigate } from 'react-router-dom';
-import { DASHBOARD_ROUTE, SIGNIN_ROUTE, SIGNUP_ROUTE } from '../../constants/routes';
+import { DASHBOARD_ROUTE, SIGNUP_ROUTE } from '../../constants/routes';
 import { AuthLogin } from '../../clients/api';
 import { AuthLoginRequestBody } from '../../types/api.types';
 
@@ -25,7 +25,6 @@ export const SignIn: React.FC = () => {
 			})
 			.catch((err) => {
 				console.log(err);
-				navigate(SIGNIN_ROUTE, { replace: true });
 			});
 	};
 

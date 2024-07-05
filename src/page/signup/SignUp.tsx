@@ -2,7 +2,7 @@ import React from 'react';
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import { Avatar, Box, Button, Container, CssBaseline, Grid, Link, TextField, Typography } from '@mui/material';
 import { useNavigate } from 'react-router-dom';
-import { SIGNIN_ROUTE, SIGNUP_ROUTE } from '../../constants/routes';
+import { SIGNIN_ROUTE } from '../../constants/routes';
 import { AuthRegister } from '../../clients/api';
 import { AuthRegisterRequestBody } from '../../types/api.types';
 
@@ -20,7 +20,6 @@ export const SignUp: React.FC = () => {
 			.then(() => navigate(SIGNIN_ROUTE))
 			.catch((err) => {
 				console.log(err);
-				navigate(SIGNUP_ROUTE);
 			});
 	};
 
