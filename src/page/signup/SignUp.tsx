@@ -1,15 +1,20 @@
 import React from 'react';
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import { Avatar, Box, Button, Container, CssBaseline, Grid, Link, TextField, Typography } from '@mui/material';
+import { useNavigate } from 'react-router-dom';
+import { SIGNIN_ROUTE } from '../../constants/routes';
 
 export const SignUp: React.FC = () => {
+	const navigate = useNavigate();
 	const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
 		event.preventDefault();
 		const data = new FormData(event.currentTarget);
 		console.log({
+			pseudo: data.get('pseudo'),
 			email: data.get('email'),
 			password: data.get('password'),
 		});
+		navigate(SIGNIN_ROUTE);
 	};
 
 	return (
