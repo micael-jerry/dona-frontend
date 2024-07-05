@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useTheme } from '@mui/material/styles';
 import {
 	Box,
@@ -23,15 +23,11 @@ import { AppBar, DRAWER_WIDTH, Main } from './styled/DrawerStyledComponent';
 
 export const Layout: React.FC<LayoutProps> = ({ children, menu }) => {
 	const theme = useTheme();
-	const [open, setOpen] = React.useState(false);
+	const [open, setOpen] = useState(false);
 
-	const handleDrawerOpen = () => {
-		setOpen(true);
-	};
+	const handleDrawerOpen = () => setOpen(true);
 
-	const handleDrawerClose = () => {
-		setOpen(false);
-	};
+	const handleDrawerClose = () => setOpen(false);
 
 	return (
 		<Box sx={{ display: 'flex' }}>
