@@ -1,25 +1,24 @@
 import axios from 'axios';
+import {
+	AuthLoginRequestBody,
+	AuthLoginResponse,
+	AuthRegisterRequestBody,
+	HelloWorldResponse,
+	UserResponse,
+} from '../types/api.types';
 
 const request = axios.create({
 	baseURL: import.meta.env.VITE_BASE_URL_API,
 });
 
-//Request types
-type AuthLoginRequestBody = { email: string; password: string };
+export const HelloWorld = () => request.get<HelloWorldResponse>('/helloworld');
 
-export const AuthLogin = (data: AuthLoginRequestBody) => request.post('/auth/login', data);
+export const AuthLogin = (data: AuthLoginRequestBody) => request.post<AuthLoginResponse>('/auth/login', data);
 
-//Request types
-type AuthRegisterRequestBody = { pseudo: string; email: string; password: string; bio: string };
+export const AuthRegister = (data: AuthRegisterRequestBody) => request.post<UserResponse>('/auth/register', data);
 
-export const AuthRegister = (data: AuthRegisterRequestBody) => request.post('/auth/register', data);
+export const AuthWhoami = () => request.get<UserResponse>('/auth/whoami');
 
-export const AuthWhoami = () => request.get('/auth/whoami');
+export const UsersGetAllUsers = () => request.get<UserResponse[]>('/users');
 
-export const UsersGetAllUsers = () => request.get('/users');
-
-export const UsersGetUserById = (userId: string) => request.get(`/users/${userId}`);
-
-export const HelloWorld = () => request.get('/helloworld');
-
-export const NotFound = () => request.get('/nimportequoi');
+export const UsersGetUserById = (userId: string) => request.get<UserResponse>(`/users/${userId}`);

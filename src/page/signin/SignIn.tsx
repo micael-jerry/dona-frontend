@@ -3,7 +3,7 @@ import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import { Avatar, Box, Button, Container, CssBaseline, Grid, Link, TextField, Typography } from '@mui/material';
 import { useAuth } from '../../hooks/useAuth';
 import { useNavigate } from 'react-router-dom';
-import { DASHBOARD_ROUTE, SIGNIN_ROUTE } from '../../constants/routes';
+import { DASHBOARD_ROUTE, SIGNIN_ROUTE, SIGNUP_ROUTE } from '../../constants/routes';
 import { AuthLogin } from '../../clients/api';
 
 export const SignIn: React.FC = () => {
@@ -18,7 +18,7 @@ export const SignIn: React.FC = () => {
 			password: data.get('password')! as string,
 		})
 			.then((res) => {
-				setTokenValue(JSON.stringify(res.data));
+				setTokenValue(res.data.token);
 				navigate(DASHBOARD_ROUTE, { replace: true });
 			})
 			.catch((err) => {
@@ -69,13 +69,9 @@ export const SignIn: React.FC = () => {
 						Sign In
 					</Button>
 					<Grid container>
-						<Grid item xs>
-							<Link href="#" variant="body2">
-								Forgot password?
-							</Link>
-						</Grid>
+						<Grid item xs></Grid>
 						<Grid item>
-							<Link href="#" variant="body2">
+							<Link href={SIGNUP_ROUTE} variant="body2">
 								{"Don't have an account? Sign Up"}
 							</Link>
 						</Grid>
