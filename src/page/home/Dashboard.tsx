@@ -72,7 +72,7 @@ const DrawerHeader = styled("div")(({ theme }) => ({
 	justifyContent: "flex-end",
 }));
 
-export const Home: React.FC = () => {
+export const Dashboard: React.FC = () => {
 	const theme = useTheme();
 	const [open, setOpen] = React.useState(false);
 
