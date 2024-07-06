@@ -1,11 +1,31 @@
 import { Typography } from '@mui/material';
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { Layout } from '../../components/layout/Layout';
 import { LAYOUT_MENU } from '../../constants/layout.menu';
+import { UserResponse } from '../../types/api.types';
+import { AuthWhoami } from '../../clients/api';
+import { useNavigate } from 'react-router-dom';
+import { DASHBOARD_ROUTE } from '../../constants/routes';
 
 export const Profile: React.FC = () => {
+	const [user, setUser] = useState<UserResponse | null>(null);
+	const navigate = useNavigate();
+
+	const getUser = async () => {
+		await AuthWhoami()
+			.then((res) => setUser(res.data))
+			.catch((err) => {
+				console.log(err);
+				navigate(DASHBOARD_ROUTE);
+			});
+	};
+	useEffect(() => {
+		getUser();
+	}, []);
+
 	return (
 		<Layout title={'Profile'} menu={LAYOUT_MENU}>
+			<Typography variant={'h6'}>{JSON.stringify(user)}</Typography>
 			<Typography paragraph>
 				Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore
 				magna aliqua. Rhoncus dolor purus non enim praesent elementum facilisis leo vel. Risus at ultrices mi tempus

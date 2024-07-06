@@ -1,4 +1,3 @@
-import axios from 'axios';
 import React, { createContext, useEffect, useMemo, useState } from 'react';
 import { TokenType } from '../types/types';
 
@@ -24,10 +23,8 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
 
 	useEffect(() => {
 		if (token) {
-			axios.defaults.headers.common['Authorization'] = `Bearer ${token}`;
 			localStorage.setItem('token', token);
 		} else {
-			delete axios.defaults.headers.common['Authorization'];
 			localStorage.removeItem('token');
 		}
 	}, [token]);
