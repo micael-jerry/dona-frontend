@@ -8,6 +8,7 @@ import Box from '@mui/material/Box';
 import CssBaseline from '@mui/material/CssBaseline';
 import { styled } from '@mui/material/styles';
 import { SIGNIN_ROUTE, SIGNUP_ROUTE } from '../../constants/routes';
+import { useNavigate } from 'react-router-dom';
 
 const Root = styled('div')(() => ({
 	flexGrow: 1,
@@ -28,16 +29,17 @@ const Title = styled(Typography)(() => ({
 }));
 
 const Home: React.FC = () => {
+	const navigate = useNavigate();
 	return (
 		<Root>
 			<CssBaseline />
 			<AppBar position="static">
 				<Toolbar>
 					<Title variant="h6">Dona</Title>
-					<Button color="inherit" href={SIGNIN_ROUTE}>
+					<Button color="inherit" onClick={() => navigate(SIGNIN_ROUTE)}>
 						Sign-In
 					</Button>
-					<Button color="inherit" href={SIGNUP_ROUTE}>
+					<Button color="inherit" onClick={() => navigate(SIGNUP_ROUTE)}>
 						Sign-Up
 					</Button>
 				</Toolbar>
@@ -51,10 +53,10 @@ const Home: React.FC = () => {
 						Report and view law enforcement positions in real time.
 					</Typography>
 					<Buttons>
-						<Button variant="contained" color="primary" href={SIGNIN_ROUTE} sx={{ margin: 1 }}>
+						<Button variant="contained" color="primary" onClick={() => navigate(SIGNIN_ROUTE)} sx={{ margin: 1 }}>
 							Sign-In
 						</Button>
-						<Button variant="outlined" color="primary" href={SIGNUP_ROUTE} sx={{ margin: 1 }}>
+						<Button variant="outlined" color="primary" onClick={() => navigate(SIGNUP_ROUTE)} sx={{ margin: 1 }}>
 							Sign-Up
 						</Button>
 					</Buttons>

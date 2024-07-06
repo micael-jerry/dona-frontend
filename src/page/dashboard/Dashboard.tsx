@@ -7,7 +7,7 @@ import { LeafletMap } from '../../components/leaflet/LeafletMap';
 export const Dashboard: React.FC = () => {
 	const { position } = usePositionStore();
 	return (
-		<Layout menu={LAYOUT_MENU}>
+		<Layout title={'Map'} menu={LAYOUT_MENU}>
 			<LeafletMap position={position} />
 		</Layout>
 	);

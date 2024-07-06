@@ -5,7 +5,7 @@ import { LAYOUT_MENU } from '../../constants/layout.menu';
 
 export const Profile: React.FC = () => {
 	return (
-		<Layout menu={LAYOUT_MENU}>
+		<Layout title={'Profile'} menu={LAYOUT_MENU}>
 			<Typography paragraph>
 				Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore
 				magna aliqua. Rhoncus dolor purus non enim praesent elementum facilisis leo vel. Risus at ultrices mi tempus

@@ -15,18 +15,21 @@ import {
 	Typography,
 } from '@mui/material';
 import MenuIcon from '@mui/icons-material/Menu';
+import AccountCircle from '@mui/icons-material/AccountCircle';
 import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
 import ChevronRightIcon from '@mui/icons-material/ChevronRight';
 import { LayoutProps } from '../../types/layout.types';
 import { DrawerHeader } from './styled/DrawerHeader';
 import { AppBar, DRAWER_WIDTH, Main } from './styled/DrawerStyledComponent';
+import { PROFILE_ROUTE } from '../../constants/routes';
+import { useNavigate } from 'react-router-dom';
 
-export const Layout: React.FC<LayoutProps> = ({ children, menu }) => {
+export const Layout: React.FC<LayoutProps> = ({ children, menu, title }) => {
 	const theme = useTheme();
 	const [open, setOpen] = useState(false);
+	const navigate = useNavigate();
 
 	const handleDrawerOpen = () => setOpen(true);
-
 	const handleDrawerClose = () => setOpen(false);
 
 	return (
@@ -43,9 +46,21 @@ export const Layout: React.FC<LayoutProps> = ({ children, menu }) => {
 					>
 						<MenuIcon />
 					</IconButton>
-					<Typography variant="h6" noWrap component="div">
-						Persistent drawer
+					<Typography variant="h6" noWrap component="div" sx={{ flexGrow: 1 }}>
+						{title}
 					</Typography>
+					<Box>
+						<IconButton
+							size="large"
+							aria-label="account of current user"
+							aria-controls="menu-appbar"
+							aria-haspopup="true"
+							color="inherit"
+							onClick={() => navigate(PROFILE_ROUTE)}
+						>
+							<AccountCircle />
+						</IconButton>
+					</Box>
 				</Toolbar>
 			</AppBar>
 			<Drawer
@@ -70,7 +85,7 @@ export const Layout: React.FC<LayoutProps> = ({ children, menu }) => {
 				<List>
 					{menu.map(({ title, to, icon }) => (
 						<ListItem key={title} disablePadding>
-							<ListItemButton href={to}>
+							<ListItemButton onClick={() => navigate(to)}>
 								<ListItemIcon>{icon}</ListItemIcon>
 								<ListItemText primary={title} />
 							</ListItemButton>

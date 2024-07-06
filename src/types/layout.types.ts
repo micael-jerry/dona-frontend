@@ -9,4 +9,5 @@ export interface LayoutMenuProps {
 export interface LayoutProps {
 	children: React.ReactNode;
 	menu: LayoutMenuProps[];
+	title: string;
 }
