@@ -15,44 +15,45 @@ import { SignUp } from '../page/signup/SignUp';
 import { Profile } from '../page/profile/Profile';
 import Home from '../page/home/Home';
 import { Logout } from '../page/logout/Logout';
+import { NotLoggedRoute } from './NotLoggedRoute';
 
 export const Routes: React.FC = () => {
 	const routes: RouteObject[] = [
 		{
-			path: HOME_ROUTE,
-			element: <Home />,
+			path: '/',
+			element: <NotLoggedRoute />,
+			children: [
+				{
+					path: HOME_ROUTE,
+					element: <Home />,
+				},
+				{
+					path: SIGNIN_ROUTE,
+					element: <SignIn />,
+				},
+				{
+					path: SIGNUP_ROUTE,
+					element: <SignUp />,
+				},
+			],
 		},
 		{
-			path: SIGNIN_ROUTE,
-			element: <SignIn />,
-		},
-		{
-			path: SIGNUP_ROUTE,
-			element: <SignUp />,
-		},
-		{
-			path: PROFILE_ROUTE,
-			element: (
-				<ProtectedRoute>
-					<Profile />
-				</ProtectedRoute>
-			),
-		},
-		{
-			path: DASHBOARD_ROUTE,
-			element: (
-				<ProtectedRoute>
-					<Dashboard />
-				</ProtectedRoute>
-			),
-		},
-		{
-			path: LOGOUT_ROUTE,
-			element: (
-				<ProtectedRoute>
-					<Logout />
-				</ProtectedRoute>
-			),
+			path: '/',
+			element: <ProtectedRoute />,
+			children: [
+				{
+					path: PROFILE_ROUTE,
+					element: <Profile />,
+				},
+				{
+					path: DASHBOARD_ROUTE,
+					element: <Dashboard />,
+				},
+				{
+					path: LOGOUT_ROUTE,
+					element: <Logout />,
+				},
+			],
 		},
 	];
 
