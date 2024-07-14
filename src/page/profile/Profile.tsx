@@ -6,8 +6,8 @@ import { UserResponse } from '../../types/api.types';
 import { AuthWhoami } from '../../clients/api';
 import { useNavigate } from 'react-router-dom';
 import { DASHBOARD_ROUTE } from '../../constants/routes';
-import GeneralInformationForm from '../../components/profile/EditProfilForm';
 import { ProfileCard } from '../../components/profile/ProfileCard';
+import { EditProfileForm } from '../../components/profile/EditProfileForm';
 
 export const Profile: React.FC = () => {
 	const [user, setUser] = useState<UserResponse | null>(null);
@@ -31,7 +31,7 @@ export const Profile: React.FC = () => {
 				<Grid container spacing={2}>
 					<Grid item xs={12} md={8}>
 						<Box mb={2}>
-							<GeneralInformationForm />
+							<EditProfileForm user={user} />
 						</Box>
 					</Grid>
 					<Grid item xs={12} md={4}>

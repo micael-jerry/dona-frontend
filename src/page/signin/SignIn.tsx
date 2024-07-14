@@ -1,24 +1,38 @@
 import React from 'react';
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
-import { Avatar, Box, Button, Container, CssBaseline, Grid, Link, TextField, Typography } from '@mui/material';
+import {
+	Alert,
+	AlertTitle,
+	Avatar,
+	Box,
+	Button,
+	Container,
+	CssBaseline,
+	Grid,
+	Link,
+	TextField,
+	Typography,
+} from '@mui/material';
 import { useAuth } from '../../hooks/useAuth';
 import { useNavigate } from 'react-router-dom';
 import { DASHBOARD_ROUTE, SIGNUP_ROUTE } from '../../constants/routes';
 import { AuthLogin } from '../../clients/api';
 import { AuthLoginRequestBody } from '../../types/api.types';
+import { SubmitHandler, useForm } from 'react-hook-form';
+import { SignInSchema } from '../../schema/signin.schema';
+import { joiResolver } from '@hookform/resolvers/joi';
 
 export const SignIn: React.FC = () => {
+	const {
+		register,
+		handleSubmit,
+		formState: { errors },
+	} = useForm<AuthLoginRequestBody>({ resolver: joiResolver(SignInSchema) });
 	const { setTokenValue } = useAuth();
 	const navigate = useNavigate();
 
-	const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
-		event.preventDefault();
-		const data = new FormData(event.currentTarget);
-		const reqBody: AuthLoginRequestBody = {
-			email: data.get('email')! as string,
-			password: data.get('password')! as string,
-		};
-		await AuthLogin(reqBody)
+	const onSubmit: SubmitHandler<AuthLoginRequestBody> = (data: AuthLoginRequestBody) => {
+		AuthLogin(data)
 			.then((res) => {
 				setTokenValue(res.data.token);
 				navigate(DASHBOARD_ROUTE, { replace: true });
@@ -45,27 +59,33 @@ export const SignIn: React.FC = () => {
 				<Typography component="h1" variant="h5">
 					Sign in
 				</Typography>
-				<Box component="form" onSubmit={handleSubmit} noValidate sx={{ mt: 1 }}>
+				<Box component="form" onSubmit={handleSubmit(onSubmit)} noValidate sx={{ mt: 1 }}>
 					<TextField
 						margin="normal"
-						required
 						fullWidth
 						id="email"
 						label="Email Address"
-						name="email"
 						autoComplete="email"
 						autoFocus
+						{...register('email')}
 					/>
 					<TextField
 						margin="normal"
-						required
 						fullWidth
-						name="password"
 						label="Password"
 						type="password"
 						id="password"
 						autoComplete="current-password"
+						{...register('password')}
 					/>
+					{(errors.email || errors.password) && (
+						<Alert severity="error">
+							<AlertTitle>Error</AlertTitle>
+							{Object.values(errors).map((error) => (
+								<Typography key={error.message}>{error.message}</Typography>
+							))}
+						</Alert>
+					)}
 					<Button type="submit" fullWidth variant="contained" sx={{ mt: 3, mb: 2 }}>
 						Sign In
 					</Button>

@@ -1,7 +1,12 @@
 import React from 'react';
 import { TextField, Box, Grid, MenuItem, Typography, Button } from '@mui/material';
+import { UserResponse } from '../../types/api.types';
 
-const GeneralInformationForm: React.FC = () => {
+interface EditProfileFormProps {
+	user: UserResponse | null;
+}
+
+export const EditProfileForm: React.FC<EditProfileFormProps> = ({ user }) => {
 	return (
 		<>
 			<Box p={2}>
@@ -44,5 +49,3 @@ const GeneralInformationForm: React.FC = () => {
 		</>
 	);
 };
-
-export default GeneralInformationForm;
