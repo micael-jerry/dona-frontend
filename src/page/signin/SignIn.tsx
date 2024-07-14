@@ -20,14 +20,14 @@ import { AuthLogin } from '../../clients/api';
 import { AuthLoginRequestBody } from '../../types/api.types';
 import { SubmitHandler, useForm } from 'react-hook-form';
 import { SignInSchema } from '../../schema/signin.schema';
-import { joiResolver } from '@hookform/resolvers/joi';
+import { yupResolver } from '@hookform/resolvers/yup';
 
 export const SignIn: React.FC = () => {
 	const {
 		register,
 		handleSubmit,
 		formState: { errors },
-	} = useForm<AuthLoginRequestBody>({ resolver: joiResolver(SignInSchema) });
+	} = useForm<AuthLoginRequestBody>({ resolver: yupResolver(SignInSchema) });
 	const { setTokenValue } = useAuth();
 	const navigate = useNavigate();
 
