@@ -1,5 +1,5 @@
 import React from 'react';
-import { TextField, Box, Grid, MenuItem, Typography, Button } from '@mui/material';
+import { TextField, Box, Grid, Typography, Button } from '@mui/material';
 import { UserResponse } from '../../types/api.types';
 
 interface EditProfileFormProps {
@@ -27,13 +27,6 @@ export const EditProfileForm: React.FC<EditProfileFormProps> = ({ user }) => {
 							InputLabelProps={{ shrink: true }}
 							disabled
 						/>
-					</Grid>
-					<Grid item xs={12} md={6}>
-						<TextField select fullWidth label="Gender" disabled>
-							<MenuItem value="male">Male</MenuItem>
-							<MenuItem value="female">Female</MenuItem>
-							<MenuItem value="other">Other</MenuItem>
-						</TextField>
 					</Grid>
 					<Grid item xs={12} md={6}>
 						<TextField fullWidth label="Email" placeholder="name@company.com" type="email" disabled />
