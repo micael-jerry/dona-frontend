@@ -19,7 +19,7 @@ import { DASHBOARD_ROUTE, SIGNUP_ROUTE } from '../../constants/routes';
 import { AuthLogin } from '../../clients/api';
 import { AuthLoginRequestBody } from '../../types/api.types';
 import { SubmitHandler, useForm } from 'react-hook-form';
-import { SignInSchema } from '../../schema/signin.schema';
+import { SignInSchema } from '../../schema/auth/signin.schema';
 import { yupResolver } from '@hookform/resolvers/yup';
 
 export const SignIn: React.FC = () => {

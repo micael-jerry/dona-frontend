@@ -32,3 +32,10 @@ export type UserResponse = {
 	bio?: string;
 	birthday: Date;
 };
+
+export type UserUpdateRequestBody = {
+	firstname: string;
+	lastname: string;
+	bio?: string;
+	birthday: Date;
+};

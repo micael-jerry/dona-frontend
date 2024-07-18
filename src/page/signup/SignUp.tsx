@@ -18,7 +18,7 @@ import { SIGNIN_ROUTE } from '../../constants/routes';
 import { AuthRegister } from '../../clients/api';
 import { AuthRegisterRequestBody } from '../../types/api.types';
 import { Controller, useForm } from 'react-hook-form';
-import { SignUpSchema } from '../../schema/signup.schema';
+import { SignUpSchema } from '../../schema/auth/signup.schema';
 import { DatePicker, LocalizationProvider } from '@mui/x-date-pickers';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import dayjs from 'dayjs';

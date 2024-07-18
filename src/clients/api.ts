@@ -5,6 +5,7 @@ import {
 	AuthRegisterRequestBody,
 	HelloWorldResponse,
 	UserResponse,
+	UserUpdateRequestBody,
 } from '../types/api.types';
 
 const request = (): AxiosInstance => {
@@ -24,6 +25,9 @@ export const AuthLogin = (data: AuthLoginRequestBody) => request().post<AuthLogi
 export const AuthRegister = (data: AuthRegisterRequestBody) => request().post<UserResponse>('/auth/register', data);
 
 export const AuthWhoami = () => request().get<UserResponse>('/auth/whoami');
+
+export const UserUpdate = (userId: string, data: UserUpdateRequestBody) =>
+	request().put<UserResponse>(`/users/${userId}`, data);
 
 export const UsersGetAllUsers = () => request().get<UserResponse[]>('/users');
 
