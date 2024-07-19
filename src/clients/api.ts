@@ -4,6 +4,7 @@ import {
 	AuthLoginResponse,
 	AuthRegisterRequestBody,
 	HelloWorldResponse,
+	ReportResponse,
 	UserResponse,
 	UserUpdateRequestBody,
 } from '../types/api.types';
@@ -32,3 +33,7 @@ export const UserUpdate = (userId: string, data: UserUpdateRequestBody) =>
 export const UsersGetAllUsers = () => request().get<UserResponse[]>('/users');
 
 export const UsersGetUserById = (userId: string) => request().get<UserResponse>(`/users/${userId}`);
+
+export const ReportsGetAllReports = () => request().get<ReportResponse[]>('/reports');
+
+export const ReportsGetReportById = (reportId: string) => request().get<ReportResponse>(`/reports/${reportId}`);
