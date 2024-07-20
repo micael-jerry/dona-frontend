@@ -4,7 +4,7 @@ import React, { useState } from 'react';
 import { ReportType } from '../../../types/api.types';
 import { LatLng } from 'leaflet';
 import { AppModal } from '../../AppModal/AppModal';
-import { ReportForm } from '../form/ReportForm';
+import { ReportForm } from '../Form/ReportForm';
 
 interface ReportBottomNavProps {
 	positionClicked: LatLng | null;

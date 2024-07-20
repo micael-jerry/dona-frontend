@@ -1,6 +1,6 @@
 import React from 'react';
 import { Avatar, Typography, Box } from '@mui/material';
-import { UserResponse } from '../../types/api.types';
+import { UserResponse } from '../../../types/api.types';
 
 interface ProfileCardProps {
 	user: UserResponse | null;

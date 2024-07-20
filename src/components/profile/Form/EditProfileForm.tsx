@@ -1,14 +1,14 @@
 import React from 'react';
 import { TextField, Box, Grid, Typography, Button, Alert, AlertTitle } from '@mui/material';
-import { UserResponse, UserUpdateRequestBody } from '../../types/api.types';
+import { UserResponse, UserUpdateRequestBody } from '../../../types/api.types';
 import { Controller, useForm } from 'react-hook-form';
 import { DatePicker, LocalizationProvider } from '@mui/x-date-pickers';
 import dayjs from 'dayjs';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import { yupResolver } from '@hookform/resolvers/yup';
-import { UpdateUserSchema } from '../../schema/user/update.user.schema';
-import { UserUpdate } from '../../clients/api';
-import { reloadPage } from '../../utils/utils.func';
+import { UpdateUserSchema } from '../../../schema/user/update.user.schema';
+import { UserUpdate } from '../../../clients/api';
+import { reloadPage } from '../../../utils/utils.func';
 
 interface EditProfileFormProps {
 	user: UserResponse | null;

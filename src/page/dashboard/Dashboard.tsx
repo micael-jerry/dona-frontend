@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from 'react';
-import { Layout } from '../../components/layout/Layout';
+import { Layout } from '../../components/Layout/Layout';
 import { LAYOUT_MENU } from '../../constants/layout.menu';
 import { usePositionStore } from '../../stores/position';
-import { LeafletMap } from '../../components/leaflet/LeafletMap';
+import { LeafletMap } from '../../components/Leaflet/LeafletMap';
 import { ReportResponse } from '../../types/api.types';
 import { ReportsGetAllReports } from '../../clients/api';
-import { Loader } from '../../components/loader/Loader';
+import { Loader } from '../../components/Loader/Loader';
 
 export const Dashboard: React.FC = () => {
 	const [reports, setReports] = useState<ReportResponse[]>([]);

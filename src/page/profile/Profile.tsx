@@ -1,14 +1,14 @@
 import { Box, Container, Grid } from '@mui/material';
 import React, { useEffect, useState } from 'react';
-import { Layout } from '../../components/layout/Layout';
+import { Layout } from '../../components/Layout/Layout';
 import { LAYOUT_MENU } from '../../constants/layout.menu';
 import { UserResponse } from '../../types/api.types';
 import { AuthWhoami } from '../../clients/api';
 import { useNavigate } from 'react-router-dom';
 import { DASHBOARD_ROUTE } from '../../constants/routes';
-import { ProfileCard } from '../../components/profile/ProfileCard';
-import { EditProfileForm } from '../../components/profile/EditProfileForm';
-import { Loader } from '../../components/loader/Loader';
+import { ProfileCard } from '../../components/profile/Card/ProfileCard';
+import { EditProfileForm } from '../../components/profile/Form/EditProfileForm';
+import { Loader } from '../../components/Loader/Loader';
 
 export const Profile: React.FC = () => {
 	const [user, setUser] = useState<UserResponse | null>(null);
