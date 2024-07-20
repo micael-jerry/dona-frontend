@@ -42,22 +42,22 @@ export type UserUpdateRequestBody = {
 	birthday: Date;
 };
 
-export enum REPORT_TYPE {
+export enum ReportType {
 	POLICE = 'POLICE',
 }
 
-export enum LOCATION_TYPE {
+export enum ReportLocationType {
 	POINT = 'Point',
 }
 
 export type LocationResponse = {
-	type: LOCATION_TYPE;
+	type: ReportLocationType;
 	coordinates: number[];
 };
 
 export type ReportResponse = {
 	_id: string;
-	type: REPORT_TYPE;
+	type: ReportType;
 	location: LocationResponse;
 	description?: string;
 	reportedBy: string;
@@ -66,7 +66,7 @@ export type ReportResponse = {
 };
 
 export type ReportCreateRequestBody = {
-	type: REPORT_TYPE;
+	type: ReportType;
 	location: LocationResponse;
 	description?: string;
 };

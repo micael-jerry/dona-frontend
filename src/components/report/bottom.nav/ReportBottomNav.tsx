@@ -1,7 +1,7 @@
 import { Policy } from '@mui/icons-material';
 import { BottomNavigation, BottomNavigationAction, Box } from '@mui/material';
 import React, { useState } from 'react';
-import { REPORT_TYPE } from '../../../types/api.types';
+import { ReportType } from '../../../types/api.types';
 import { LatLng } from 'leaflet';
 import { AppModal } from '../../AppModal/AppModal';
 import { ReportForm } from '../form/ReportForm';
@@ -11,7 +11,7 @@ interface ReportBottomNavProps {
 }
 
 export const ReportBottomNav: React.FC<ReportBottomNavProps> = ({ positionClicked }) => {
-	const [value, setValue] = useState<REPORT_TYPE | null>(null);
+	const [value, setValue] = useState<ReportType | null>(null);
 	const [openModal, setOpenModal] = useState<boolean>(false);
 
 	const onClickHandler = () => {
@@ -29,7 +29,7 @@ export const ReportBottomNav: React.FC<ReportBottomNavProps> = ({ positionClicke
 				<BottomNavigationAction
 					label={'Police'}
 					icon={<Policy />}
-					value={REPORT_TYPE.POLICE}
+					value={ReportType.POLICE}
 					disabled={!positionClicked}
 					onClick={() => onClickHandler()}
 				/>

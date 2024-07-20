@@ -1,13 +1,13 @@
 import { Alert, AlertTitle, Box, Button, TextField, Typography } from '@mui/material';
 import React from 'react';
-import { LOCATION_TYPE, REPORT_TYPE, ReportCreateRequestBody } from '../../../types/api.types';
+import { ReportLocationType, ReportType, ReportCreateRequestBody } from '../../../types/api.types';
 import { LatLng } from 'leaflet';
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { ReportCreateSchema } from '../../../schema/report/report.schema';
 
 interface ReportFormProps {
-	reportType: REPORT_TYPE;
+	reportType: ReportType;
 	position: LatLng;
 }
 export const ReportForm: React.FC<ReportFormProps> = ({ reportType, position }) => {
@@ -20,7 +20,7 @@ export const ReportForm: React.FC<ReportFormProps> = ({ reportType, position }) 
 		defaultValues: {
 			type: reportType,
 			location: {
-				type: LOCATION_TYPE.POINT,
+				type: ReportLocationType.POINT,
 				coordinates: [position.lng, position.lat],
 			},
 		},
