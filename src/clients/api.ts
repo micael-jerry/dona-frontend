@@ -4,6 +4,7 @@ import {
 	AuthLoginResponse,
 	AuthRegisterRequestBody,
 	HelloWorldResponse,
+	ReportCreateRequestBody,
 	ReportResponse,
 	UserResponse,
 	UserUpdateRequestBody,
@@ -37,3 +38,5 @@ export const UsersGetUserById = (userId: string) => request().get<UserResponse>(
 export const ReportsGetAllReports = () => request().get<ReportResponse[]>('/reports');
 
 export const ReportsGetReportById = (reportId: string) => request().get<ReportResponse>(`/reports/${reportId}`);
+
+export const ReportCreate = (data: ReportCreateRequestBody) => request().post<ReportResponse>('/reports', data);

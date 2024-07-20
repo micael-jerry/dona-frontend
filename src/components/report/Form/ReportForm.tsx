@@ -5,6 +5,8 @@ import { LatLng } from 'leaflet';
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { ReportCreateSchema } from '../../../schema/report/report.schema';
+import { ReportCreate } from '../../../clients/api';
+import { reloadPage } from '../../../utils/utils.func';
 
 interface ReportFormProps {
 	reportType: ReportType;
@@ -26,8 +28,16 @@ export const ReportForm: React.FC<ReportFormProps> = ({ reportType, position }) 
 		},
 	});
 
+	const createReport = async (data: ReportCreateRequestBody) => {
+		ReportCreate(data)
+			.then(() => reloadPage())
+			.catch((err) => {
+				console.log(err);
+			});
+	};
+
 	const onSubmit = (data: ReportCreateRequestBody) => {
-		console.log(data);
+		createReport(data);
 	};
 
 	const isdetectedError = errors.description || errors.type || errors.location;
