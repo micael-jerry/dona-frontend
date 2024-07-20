@@ -64,3 +64,9 @@ export type ReportResponse = {
 	createdAt: Date;
 	updatedAt?: Date;
 };
+
+export type ReportCreateRequestBody = {
+	type: REPORT_TYPE;
+	location: LocationResponse;
+	description?: string;
+};
