@@ -5,7 +5,7 @@ import { ReportResponse } from '../../types/api.types';
 import { useState } from 'react';
 import { Box, Typography } from '@mui/material';
 import dayjs from 'dayjs';
-import { ReportBottomNav } from './report.bottom.nav/ReportBottomNav';
+import { ReportBottomNav } from '../report/bottom.nav/ReportBottomNav';
 
 export interface LeafletMapProps {
 	position: LatLng;
