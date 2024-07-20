@@ -1,7 +1,10 @@
 import './LeafletMap.css';
-import { MapContainer, Marker, Popup, TileLayer } from 'react-leaflet';
+import { MapContainer, Marker, Popup, TileLayer, useMapEvents } from 'react-leaflet';
 import { Icon, LatLng } from 'leaflet';
 import { ReportResponse } from '../../types/api.types';
+import { useState } from 'react';
+import { Typography } from '@mui/material';
+import dayjs from 'dayjs';
 
 export interface LeafletMapProps {
 	position: LatLng;
@@ -16,6 +19,17 @@ const markerIcons = {
 };
 
 export const LeafletMap: React.FC<LeafletMapProps> = ({ position, reports }) => {
+	const [positionClicked, setPositionClicked] = useState<LatLng | null>(null);
+
+	const MapClickHandler = () => {
+		useMapEvents({
+			click(e) {
+				setPositionClicked(e.latlng);
+			},
+		});
+		return null;
+	};
+
 	return (
 		<MapContainer center={position} zoom={13} scrollWheelZoom={true}>
 			<TileLayer
@@ -26,10 +40,20 @@ export const LeafletMap: React.FC<LeafletMapProps> = ({ position, reports }) => 
 				const latLng = new LatLng(report.location.coordinates[1], report.location.coordinates[0]);
 				return (
 					<Marker position={latLng} key={`${report.location.coordinates.toString()}`} icon={markerIcons[report.type]}>
-						<Popup>{`lat: ${latLng.lat} lng: ${latLng.lng}`}</Popup>
+						<Popup>
+							<Typography component={'p'}>Hour: {dayjs(report.createdAt).format('HH:mm:ss')}</Typography>
+							<Typography component={'p'}>Description: {report.description}</Typography>
+							<Typography component={'p'}>{`Lat: ${latLng.lat} Lng: ${latLng.lng}`}</Typography>
+						</Popup>
 					</Marker>
 				);
 			})}
+			{positionClicked && (
+				<Marker position={positionClicked}>
+					<Popup>{`lat: ${positionClicked.lat} lng: ${positionClicked.lng}`}</Popup>
+				</Marker>
+			)}
+			<MapClickHandler />
 		</MapContainer>
 	);
 };
