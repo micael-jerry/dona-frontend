@@ -6,9 +6,9 @@ import { useState } from 'react';
 import { Box, Typography } from '@mui/material';
 import dayjs from 'dayjs';
 import { ReportBottomNav } from '../report/BottomNav/ReportBottomNav';
+import { usePositionStore } from '../../stores/position';
 
 export interface LeafletMapProps {
-	position: LatLng;
 	reports: ReportResponse[];
 }
 
@@ -19,7 +19,8 @@ const markerIcons = {
 	}),
 };
 
-export const LeafletMap: React.FC<LeafletMapProps> = ({ position, reports }) => {
+export const LeafletMap: React.FC<LeafletMapProps> = ({ reports }) => {
+	const { position } = usePositionStore();
 	const [positionClicked, setPositionClicked] = useState<LatLng | null>(null);
 
 	const MapClickHandler = () => {
