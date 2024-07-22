@@ -1,6 +1,8 @@
 import React, { SetStateAction } from 'react';
 import Box from '@mui/material/Box';
 import Modal from '@mui/material/Modal';
+import { IconButton } from '@mui/material';
+import { CloseOutlined } from '@mui/icons-material';
 
 interface AppModalProps {
 	open: boolean;
@@ -29,6 +31,18 @@ export const AppModal: React.FC<AppModalProps> = ({ open, setOpen, children }) =
 					borderRadius: 2,
 				}}
 			>
+				<IconButton
+					aria-label="close"
+					onClick={handleClose}
+					sx={{
+						position: 'absolute',
+						right: 8,
+						top: 8,
+						color: 'inherit',
+					}}
+				>
+					<CloseOutlined />
+				</IconButton>
 				{children}
 			</Box>
 		</Modal>

@@ -7,7 +7,7 @@ import dayjs from 'dayjs';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { UpdateUserSchema } from '../../../schema/user/update.user.schema';
-import { UserUpdate } from '../../../clients/api';
+import { userUpdate } from '../../../clients/api';
 import { reloadPage } from '../../../utils/utils.func';
 
 interface EditProfileFormProps {
@@ -32,7 +32,7 @@ export const EditProfileForm: React.FC<EditProfileFormProps> = ({ user }) => {
 	});
 
 	const updateUser = async (userId: string, data: UserUpdateRequestBody) => {
-		UserUpdate(userId, data)
+		userUpdate(userId, data)
 			.then(() => reloadPage())
 			.catch((err) => {
 				console.log(err);

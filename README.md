@@ -1,30 +1,69 @@
-# React + TypeScript + Vite
+# Dona - frontend
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## Description
 
-Currently, two official plugins are available:
+This project is a React application and an Express API inspired by Waze. It allows users to report police positions and potentially other incidents on a map using Leaflet. Users can sign up, view reports on the map, and report incidents themselves.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+### [Back-End link](https://github.com/micael-jerry/dona-backend)
 
-## Expanding the ESLint configuration
+## Features
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+- User registration and authentication
+- Report police positions and other incidents
+- View reports on an interactive map
+- Add comments and votes to reports
 
-- Configure the top-level `parserOptions` property like this:
+## Technologies Used
 
-```js
-export default {
-  // other rules...
-  parserOptions: {
-    ecmaVersion: 'latest',
-    sourceType: 'module',
-    project: ['./tsconfig.json', './tsconfig.node.json'],
-    tsconfigRootDir: __dirname,
-  },
-}
+- React
+- Materia UI
+- Typescript
+
+## Getting started
+
+### Prerequisites
+
+Before you start, please ensure that you have the following items installed on your machine:
+
+- [Node.js](https://nodejs.org/)
+
+### Installation
+
+#### 1. Clone the repository
+
+```bash
+git clone git@github.com:micael-jerry/dona-frontend.git
 ```
 
-- Replace `plugin:@typescript-eslint/recommended` to `plugin:@typescript-eslint/recommended-type-checked` or `plugin:@typescript-eslint/strict-type-checked`
-- Optionally add `plugin:@typescript-eslint/stylistic-type-checked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and add `plugin:react/recommended` & `plugin:react/jsx-runtime` to the `extends` list
+#### 2. Install dependencies for the backend
+
+```bash
+cd dona-frontend
+npm install
+```
+
+#### 3. Configuration
+
+Create a `.env` file at the root of the project and configure the necessary environment variables:
+
+```bash
+VITE_BASE_URL_API=<url>
+```
+
+### Start
+
+#### 1. Launch application
+
+```bash
+npm start
+```
+
+#### 2. Launch the application in development mode
+
+```bash
+npm run dev
+```
+
+## Author
+
+- [@micael-jerry](https://github.com/micael-jerry)

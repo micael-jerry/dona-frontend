@@ -22,7 +22,7 @@ export const ReportBottomNav: React.FC<ReportBottomNavProps> = ({ positionClicke
 			<BottomNavigation
 				showLabels
 				value={value}
-				onChange={(event, newValue) => {
+				onChange={(_, newValue) => {
 					setValue(newValue);
 				}}
 			>
@@ -35,7 +35,7 @@ export const ReportBottomNav: React.FC<ReportBottomNavProps> = ({ positionClicke
 				/>
 			</BottomNavigation>
 			<AppModal open={openModal} setOpen={setOpenModal}>
-				<ReportForm reportType={value!} position={positionClicked!} />
+				<ReportForm reportType={value!} position={positionClicked!} onClose={() => setOpenModal(false)} />
 			</AppModal>
 		</Box>
 	);

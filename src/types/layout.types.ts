@@ -3,7 +3,7 @@ import React from 'react';
 export interface LayoutMenuProps {
 	title: string;
 	to: string;
-	icon: any;
+	icon: React.ReactNode;
 }
 
 export interface LayoutProps {

@@ -5,14 +5,15 @@ import { LatLng } from 'leaflet';
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { ReportCreateSchema } from '../../../schema/report/report.schema';
-import { ReportCreate } from '../../../clients/api';
+import { reportCreate } from '../../../clients/api';
 import { reloadPage } from '../../../utils/utils.func';
 
 interface ReportFormProps {
 	reportType: ReportType;
 	position: LatLng;
+	onClose: () => void;
 }
-export const ReportForm: React.FC<ReportFormProps> = ({ reportType, position }) => {
+export const ReportForm: React.FC<ReportFormProps> = ({ reportType, position, onClose }) => {
 	const {
 		register,
 		handleSubmit,
@@ -29,7 +30,7 @@ export const ReportForm: React.FC<ReportFormProps> = ({ reportType, position }) 
 	});
 
 	const createReport = async (data: ReportCreateRequestBody) => {
-		ReportCreate(data)
+		reportCreate(data)
 			.then(() => reloadPage())
 			.catch((err) => {
 				console.log(err);
@@ -42,14 +43,14 @@ export const ReportForm: React.FC<ReportFormProps> = ({ reportType, position }) 
 
 	const isdetectedError = errors.description || errors.type || errors.location;
 	return (
-		<Box width={'100%'} p={1}>
-			<Typography id="modal-modal-title" variant="h6" component="h2">
+		<Box width={'100%'} p={2}>
+			<Typography id="modal-modal-title" variant="h6" component="h2" gutterBottom>
 				Report {reportType}
 			</Typography>
 			<Typography id="modal-modal-description" sx={{ mt: 2 }}>
-				Position {`${position.lat}, ${position.lng}`}
+				Position: {`${position.lat}, ${position.lng}`}
 			</Typography>
-			<Box component="form" onSubmit={handleSubmit(onSubmit)}>
+			<Box component="form" onSubmit={handleSubmit(onSubmit)} noValidate>
 				<TextField
 					margin="normal"
 					fullWidth
@@ -66,9 +67,14 @@ export const ReportForm: React.FC<ReportFormProps> = ({ reportType, position }) 
 						))}
 					</Alert>
 				)}
-				<Button type="submit" fullWidth variant="contained" sx={{ mt: 3, mb: 2 }}>
-					Save Report
-				</Button>
+				<Box display={'flex'} justifyContent={'space-around'} sx={{ mt: 3, mb: 2 }}>
+					<Button type="submit" variant="contained" color="primary">
+						Save Report
+					</Button>
+					<Button variant="outlined" color="primary" onClick={onClose}>
+						Close
+					</Button>
+				</Box>
 			</Box>
 		</Box>
 	);
