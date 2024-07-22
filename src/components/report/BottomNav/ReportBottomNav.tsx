@@ -22,7 +22,7 @@ export const ReportBottomNav: React.FC<ReportBottomNavProps> = ({ positionClicke
 			<BottomNavigation
 				showLabels
 				value={value}
-				onChange={(event, newValue) => {
+				onChange={(_, newValue) => {
 					setValue(newValue);
 				}}
 			>
