@@ -1,5 +1,5 @@
 import { Box, Container, Grid } from '@mui/material';
-import React, { useEffect, useState } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import { Layout } from '../../components/Layout/Layout';
 import { LAYOUT_MENU } from '../../constants/layout.menu';
 import { UserResponse } from '../../types/api.types';
@@ -14,17 +14,17 @@ export const Profile: React.FC = () => {
 	const [user, setUser] = useState<UserResponse | null>(null);
 	const navigate = useNavigate();
 
-	const getUser = async () => {
+	const getUser = useCallback(async () => {
 		await authWhoami()
 			.then((res) => setUser(res.data))
 			.catch((err) => {
 				console.log(err);
 				navigate(DASHBOARD_ROUTE);
 			});
-	};
+	}, [navigate]);
 	useEffect(() => {
 		getUser();
-	}, []);
+	}, [getUser]);
 
 	return (
 		<Layout title={'Profile'} menu={LAYOUT_MENU}>
