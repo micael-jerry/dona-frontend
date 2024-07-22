@@ -3,14 +3,14 @@ import { Layout } from '../../components/Layout/Layout';
 import { LAYOUT_MENU } from '../../constants/layout.menu';
 import { LeafletMap } from '../../components/Leaflet/LeafletMap';
 import { ReportResponse } from '../../types/api.types';
-import { ReportsGetAllReports } from '../../clients/api';
+import { reportsGetAllReports } from '../../clients/api';
 import { Loader } from '../../components/Loader/Loader';
 
 export const Dashboard: React.FC = () => {
 	const [reports, setReports] = useState<ReportResponse[]>([]);
 
 	const getReports = async () => {
-		await ReportsGetAllReports({ date: 'now' })
+		await reportsGetAllReports({ date: 'now' })
 			.then((res) => setReports(res.data))
 			.catch((err) => {
 				console.log(err);

@@ -6,6 +6,7 @@ import {
 	HelloWorldResponse,
 	ReportCreateRequestBody,
 	ReportResponse,
+	ReportsGetAllReportsQueryParams,
 	UserResponse,
 	UserUpdateRequestBody,
 } from '../types/api.types';
@@ -20,30 +21,26 @@ const request = (): AxiosInstance => {
 	});
 };
 
-export const HelloWorld = () => request().get<HelloWorldResponse>('/helloworld');
+export const helloWorld = () => request().get<HelloWorldResponse>('/helloworld');
 
-export const AuthLogin = (data: AuthLoginRequestBody) => request().post<AuthLoginResponse>('/auth/login', data);
+export const authLogin = (data: AuthLoginRequestBody) => request().post<AuthLoginResponse>('/auth/login', data);
 
-export const AuthRegister = (data: AuthRegisterRequestBody) => request().post<UserResponse>('/auth/register', data);
+export const authRegister = (data: AuthRegisterRequestBody) => request().post<UserResponse>('/auth/register', data);
 
-export const AuthWhoami = () => request().get<UserResponse>('/auth/whoami');
+export const authWhoami = () => request().get<UserResponse>('/auth/whoami');
 
-export const UserUpdate = (userId: string, data: UserUpdateRequestBody) =>
+export const userUpdate = (userId: string, data: UserUpdateRequestBody) =>
 	request().put<UserResponse>(`/users/${userId}`, data);
 
-export const UsersGetAllUsers = () => request().get<UserResponse[]>('/users');
+export const usersGetAllUsers = () => request().get<UserResponse[]>('/users');
 
-export const UsersGetUserById = (userId: string) => request().get<UserResponse>(`/users/${userId}`);
+export const usersGetUserById = (userId: string) => request().get<UserResponse>(`/users/${userId}`);
 
-interface ReportsGetAllReportsQueryParams {
-	date?: string;
-}
-
-export const ReportsGetAllReports = (queryParam: ReportsGetAllReportsQueryParams) =>
+export const reportsGetAllReports = (queryParam: ReportsGetAllReportsQueryParams) =>
 	request().get<ReportResponse[]>('/reports', {
 		params: queryParam,
 	});
 
-export const ReportsGetReportById = (reportId: string) => request().get<ReportResponse>(`/reports/${reportId}`);
+export const reportsGetReportById = (reportId: string) => request().get<ReportResponse>(`/reports/${reportId}`);
 
-export const ReportCreate = (data: ReportCreateRequestBody) => request().post<ReportResponse>('/reports', data);
+export const reportCreate = (data: ReportCreateRequestBody) => request().post<ReportResponse>('/reports', data);

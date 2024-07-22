@@ -16,7 +16,7 @@ import {
 import { useAuth } from '../../hooks/useAuth';
 import { useNavigate } from 'react-router-dom';
 import { DASHBOARD_ROUTE, SIGNUP_ROUTE } from '../../constants/routes';
-import { AuthLogin } from '../../clients/api';
+import { authLogin } from '../../clients/api';
 import { AuthLoginRequestBody } from '../../types/api.types';
 import { SubmitHandler, useForm } from 'react-hook-form';
 import { SignInSchema } from '../../schema/auth/signin.schema';
@@ -32,7 +32,7 @@ export const SignIn: React.FC = () => {
 	const navigate = useNavigate();
 
 	const onSubmit: SubmitHandler<AuthLoginRequestBody> = (data: AuthLoginRequestBody) => {
-		AuthLogin(data)
+		authLogin(data)
 			.then((res) => {
 				setTokenValue(res.data.token);
 				navigate(DASHBOARD_ROUTE, { replace: true });

@@ -70,3 +70,7 @@ export type ReportCreateRequestBody = {
 	location: LocationResponse;
 	description?: string;
 };
+
+export interface ReportsGetAllReportsQueryParams {
+	date?: string;
+}

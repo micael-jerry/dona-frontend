@@ -15,7 +15,7 @@ import {
 } from '@mui/material';
 import { useNavigate } from 'react-router-dom';
 import { SIGNIN_ROUTE } from '../../constants/routes';
-import { AuthRegister } from '../../clients/api';
+import { authRegister } from '../../clients/api';
 import { AuthRegisterRequestBody } from '../../types/api.types';
 import { Controller, useForm } from 'react-hook-form';
 import { SignUpSchema } from '../../schema/auth/signup.schema';
@@ -32,7 +32,7 @@ export const SignUp: React.FC = () => {
 	} = useForm<AuthRegisterRequestBody>({ resolver: yupResolver(SignUpSchema) });
 	const navigate = useNavigate();
 	const onSubmit = (data: AuthRegisterRequestBody) => {
-		AuthRegister(data)
+		authRegister(data)
 			.then(() => navigate(SIGNIN_ROUTE))
 			.catch((err) => {
 				console.log(err);

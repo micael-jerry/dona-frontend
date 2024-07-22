@@ -3,7 +3,7 @@ import React, { useEffect, useState } from 'react';
 import { Layout } from '../../components/Layout/Layout';
 import { LAYOUT_MENU } from '../../constants/layout.menu';
 import { UserResponse } from '../../types/api.types';
-import { AuthWhoami } from '../../clients/api';
+import { authWhoami } from '../../clients/api';
 import { useNavigate } from 'react-router-dom';
 import { DASHBOARD_ROUTE } from '../../constants/routes';
 import { ProfileCard } from '../../components/profile/Card/ProfileCard';
@@ -15,7 +15,7 @@ export const Profile: React.FC = () => {
 	const navigate = useNavigate();
 
 	const getUser = async () => {
-		await AuthWhoami()
+		await authWhoami()
 			.then((res) => setUser(res.data))
 			.catch((err) => {
 				console.log(err);
