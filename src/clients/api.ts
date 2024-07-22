@@ -35,7 +35,14 @@ export const UsersGetAllUsers = () => request().get<UserResponse[]>('/users');
 
 export const UsersGetUserById = (userId: string) => request().get<UserResponse>(`/users/${userId}`);
 
-export const ReportsGetAllReports = () => request().get<ReportResponse[]>('/reports');
+interface ReportsGetAllReportsQueryParams {
+	date?: string;
+}
+
+export const ReportsGetAllReports = (queryParam: ReportsGetAllReportsQueryParams) =>
+	request().get<ReportResponse[]>('/reports', {
+		params: queryParam,
+	});
 
 export const ReportsGetReportById = (reportId: string) => request().get<ReportResponse>(`/reports/${reportId}`);
 

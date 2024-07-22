@@ -10,7 +10,7 @@ export const Dashboard: React.FC = () => {
 	const [reports, setReports] = useState<ReportResponse[]>([]);
 
 	const getReports = async () => {
-		await ReportsGetAllReports()
+		await ReportsGetAllReports({ date: 'now' })
 			.then((res) => setReports(res.data))
 			.catch((err) => {
 				console.log(err);
