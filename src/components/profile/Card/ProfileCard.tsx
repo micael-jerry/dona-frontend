@@ -1,5 +1,6 @@
+import './ProfileCard.css';
 import React from 'react';
-import { Avatar, Typography, Box } from '@mui/material';
+import { Avatar, Typography, Card, CardContent, Grid } from '@mui/material';
 import { UserResponse } from '../../../types/api.types';
 
 interface ProfileCardProps {
@@ -8,13 +9,29 @@ interface ProfileCardProps {
 
 export const ProfileCard: React.FC<ProfileCardProps> = ({ user }) => {
 	return (
-		<Box display="flex" flexDirection="column" alignItems="center" p={2}>
-			<Avatar src="path_to_image" alt="Profile Picture" sx={{ width: 100, height: 100 }} />
-			<Typography variant="h6">{`${user?.lastname} ${user?.firstname}`}</Typography>
-			<Typography variant="subtitle1">{user?.pseudo}</Typography>
-			<Typography variant="subtitle1">{user?.email}</Typography>
-			<Typography variant="body2">{user?.birthday.toString()}</Typography>
-			<Typography variant="body2">{user?.bio}</Typography>
-		</Box>
+		<Card className={'profile-card'}>
+			<CardContent>
+				<Grid container direction="column" alignItems="center">
+					<Avatar className={'profile-avatar'} />
+					<Typography variant="h5">{`${user?.firstname} ${user?.lastname}`}</Typography>
+					<Typography variant="body2" color="textSecondary">{`@${user?.pseudo}`}</Typography>
+				</Grid>
+				<div className={'profile-user-info'}>
+					<Typography variant="h6">User Information</Typography>
+					<Typography variant="body2">
+						<strong>First Name:</strong> {user?.firstname}
+					</Typography>
+					<Typography variant="body2">
+						<strong>Last Name:</strong> {user?.lastname}
+					</Typography>
+					<Typography variant="body2">
+						<strong>Email:</strong> {user?.email}
+					</Typography>
+					<Typography variant="body2">
+						<strong>Username:</strong> {`@${user?.pseudo}`}
+					</Typography>
+				</div>
+			</CardContent>
+		</Card>
 	);
 };

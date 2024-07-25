@@ -1,0 +1,15 @@
+.profile-card {
+	max-width: 345;
+	margin: auto;
+}
+
+.profile-avatar {
+	width: 50;
+	height: 50;
+	margin: auto;
+}
+
+.profile-user-info {
+	text-align: left;
+	margin-top: 16;
+}
